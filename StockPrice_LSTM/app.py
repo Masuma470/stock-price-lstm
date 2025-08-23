@@ -35,7 +35,13 @@ if st.button("Fetch & Predict"):
     X = np.reshape(X, (X.shape[0], X.shape[1], 1))
     
     # Load trained model
-    model = load_model("lstm_model.h5")  # Make sure this file exists
+    import os
+from keras.models import load_model
+
+current_dir = os.path.dirname(os.path.abspath(__file__))
+model_path = os.path.join(current_dir, "lstm_model.h5")
+model = load_model(model_path)
+
     
     # Predict
     predictions = model.predict(X)
