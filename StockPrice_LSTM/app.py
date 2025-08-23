@@ -34,19 +34,18 @@ if st.button("Fetch & Predict"):
     X, y = np.array(X), np.array(y)
     X = np.reshape(X, (X.shape[0], X.shape[1], 1))
     
-    # Load trained model
+   # Load trained model
     import os
-from keras.models import load_model
+    from keras.models import load_model
 
-current_dir = os.path.dirname(os.path.abspath(__file__))
-model_path = os.path.join(current_dir, "lstm_model.h5")
-model = load_model(model_path)
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    model_path = os.path.join(current_dir, "lstm_model.h5")
+    model = load_model(model_path)
 
-    
     # Predict
     predictions = model.predict(X)
     predictions = scaler.inverse_transform(predictions)
-    
+
     # Plot predictions vs actual
     st.subheader("Predicted vs Actual Closing Prices")
     plt.figure(figsize=(12,6))
